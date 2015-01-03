@@ -5,6 +5,10 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop())
+    if this.minScore() > 21 then @trigger('bust') else console.log(this.minScore())
+
+  stand: ->
+    @trigger('stand')
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
